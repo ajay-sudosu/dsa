@@ -1,7 +1,6 @@
 class SLL:
     def __init__(self, head=None):
         self.head = head
-        self.count = 0
 
     def is_empty(self):
         if not self.head:
@@ -11,7 +10,6 @@ class SLL:
     def insert_first(self, data):
         new_node = Node(data=data, next_ref=self.head)
         self.head = new_node
-        self.count += 1
 
     def insert_last(self, data):
         if self.is_empty():
@@ -22,7 +20,6 @@ class SLL:
             while temp.next_ref is not None:
                 temp = temp.next_ref
             temp.next_ref = new_node
-            self.count += 1
 
     def search(self, data):
         if self.is_empty():
@@ -44,7 +41,6 @@ class SLL:
         ele_ref = self.search(data=after)
         new_node = Node(data=data, next_ref=ele_ref.next_ref)
         ele_ref.next_ref = new_node
-        self.count += 1
 
     def show(self):
         if self.is_empty():
@@ -61,7 +57,7 @@ class SLL:
     def delete_first(self):
         if not self.is_empty():
             self.head = self.head.next_ref
-            self.count -= 1
+
         else:
             print("List is empty nothing to delete.")
 
@@ -77,7 +73,6 @@ class SLL:
             while temp.next_ref.next_ref is not None:
                 temp = temp.next_ref
             temp.next_ref = None
-            self.count -= 1
 
     def delete(self, data):
         if self.is_empty():
@@ -97,7 +92,41 @@ class SLL:
                     temp.next_ref = found_.next_ref
 
                 temp = temp.next_ref
-                self.count -= 1
+
+    def sort_zeros_ones_twos(self):
+        # null nodes to start chain
+        zp = Node(0)
+        op = Node(0)
+        tp = Node(0)
+
+        # null pointers
+        zero = zp
+        one = op
+        two = tp
+
+        temp = self.head  # first node
+
+        while temp:
+            if temp.data == 0:
+                zero.next_ref = temp
+                zero = zero.next_ref
+
+            elif temp.data == 1:
+                one.next_ref = temp
+                one = one.next_ref
+            else:
+                two.next_ref = temp
+                two = two.next_ref
+            temp = temp.next_ref
+
+        # joining the list
+        zero.next_ref = op.next_ref if op.next_ref else tp.next_ref
+        one.next_ref = tp.next_ref
+        two.next_ref = None
+
+        #  moving the head to first's node of chain
+        self.head = zp.next_ref
+        self.show()
 
 
 class Node:
@@ -109,11 +138,9 @@ class Node:
 
 sll = SLL()
 
-sll.insert_first(data=20)
-sll.insert_last(data=30)
-sll.insert_last(data=40)
-sll.insert_last(data=50)
-sll.insert_after(after=20, data=25)
+sll.insert_last(data=1)
+sll.insert_last(data=2)
+sll.insert_last(data=2)
+sll.insert_last(data=0)
 sll.show()
-sll.delete(20)
-sll.show()
+sll.sort_zeros_ones_twos()

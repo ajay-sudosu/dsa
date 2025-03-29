@@ -100,14 +100,23 @@ class SLL:
         prev_ref = None
         temp = self.head
 
-        while temp.next_ref:
+        # while temp.next_ref:
+        #     next_node = temp.next_ref  # saving the next node ref
+        #     temp.next_ref = prev_ref  # feeding the prev_ref to current node
+        #     prev_ref = temp  # updated the prev ref with the current node ref
+        #
+        #     temp = next_node  # reassigning temp with the next node as saved before
+        #     self.head = temp  # updating the head to next node with the temp (which is a next_node now)
+        # temp.next_ref = prev_ref  # last node condition to change the prev_ref
+
+        while temp:
             next_node = temp.next_ref  # saving the next node ref
             temp.next_ref = prev_ref  # feeding the prev_ref to current node
             prev_ref = temp  # updated the prev ref with the current node ref
 
             temp = next_node  # reassigning temp with the next node as saved before
-            self.head = temp  # updating the head to next node with the temp (which is a next_node now)
-        temp.next_ref = prev_ref  # last node condition to change the prev_ref
+            # self.head = temp  # updating the head to next node with the temp (which is a next_node now)
+        return prev_ref
 
 
 class Node:

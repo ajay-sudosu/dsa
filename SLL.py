@@ -37,7 +37,7 @@ class SLL:
         else:
             raise ValueError(f"{after_item} not found.")
 
-    def list(self):
+    def show(self):
         if not self.is_empty():
             temp = self.head
             while temp is not None:

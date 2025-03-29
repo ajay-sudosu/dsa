@@ -1,7 +1,6 @@
 class SLL:
     def __init__(self, head=None):
         self.head = head
-        self.count = 0
 
     def is_empty(self):
         if not self.head:
@@ -11,7 +10,6 @@ class SLL:
     def insert_first(self, data):
         new_node = Node(data=data, next_ref=self.head)
         self.head = new_node
-        self.count += 1
 
     def insert_last(self, data):
         if self.is_empty():
@@ -22,7 +20,6 @@ class SLL:
             while temp.next_ref is not None:
                 temp = temp.next_ref
             temp.next_ref = new_node
-            self.count += 1
 
     def search(self, data):
         if self.is_empty():
@@ -44,7 +41,6 @@ class SLL:
         ele_ref = self.search(data=after)
         new_node = Node(data=data, next_ref=ele_ref.next_ref)
         ele_ref.next_ref = new_node
-        self.count += 1
 
     def show(self):
         if self.is_empty():
@@ -61,7 +57,7 @@ class SLL:
     def delete_first(self):
         if not self.is_empty():
             self.head = self.head.next_ref
-            self.count -= 1
+
         else:
             print("List is empty nothing to delete.")
 
@@ -77,7 +73,6 @@ class SLL:
             while temp.next_ref.next_ref is not None:
                 temp = temp.next_ref
             temp.next_ref = None
-            self.count -= 1
 
     def delete(self, data):
         if self.is_empty():
@@ -97,7 +92,41 @@ class SLL:
                     temp.next_ref = found_.next_ref
 
                 temp = temp.next_ref
-                self.count -= 1
+
+    def middle(self, head):
+        slow = head
+        fast = head
+
+        while fast and fast.next_ref:
+            slow = slow.next_ref
+            fast = fast.next_ref.next_ref
+        return slow  # middle node
+
+    def reverse_half(self, head):
+        prev_ref = None
+        temp = head
+
+        while temp.next_ref:
+            next_node = temp.next_ref  # saving the next node ref
+            temp.next_ref = prev_ref  # feeding the prev_ref to current node
+            prev_ref = temp  # updated the prev ref with the current node ref
+
+            temp = next_node  # reassigning temp with the next node as saved before
+        temp.next_ref = prev_ref  # last node condition to change the prev_ref
+        return temp
+
+    def is_palindrom(self):
+        temp = self.head
+        middle = self.middle(temp)
+        head2 = self.reverse_half(head=middle)
+        temp = self.head
+        while head2 and temp:
+            if head2.data == temp.data:
+                head2 = head2.next_ref
+                temp = temp.next_ref
+            else:
+                return False
+        return True
 
 
 class Node:
@@ -109,11 +138,12 @@ class Node:
 
 sll = SLL()
 
-sll.insert_first(data=20)
-sll.insert_last(data=30)
-sll.insert_last(data=40)
-sll.insert_last(data=50)
-sll.insert_after(after=20, data=25)
+sll.insert_first(1)
+sll.insert_last(2)
+sll.insert_last(3)
+sll.insert_last(3)
+sll.insert_last(2)
+sll.insert_last(1)
 sll.show()
-sll.delete(20)
-sll.show()
+
+print(sll.is_palindrom())
