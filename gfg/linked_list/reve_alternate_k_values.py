@@ -19,28 +19,39 @@ def show(head):
     print()
 
 
-def reverse_subset(head, start, end):
-    prev = None
+def rev_alternate(head, k):
+    rev = True
+
     temp = head
-    i = 1
-    while i < start:
-        prev = temp
-        temp = temp.next
-        i += 1
+    star_prev = None
+    while temp and temp.next:
+        new_prev = None
+        curr = temp
+        if rev:
+            for _ in range(1, k+1):
+                next_node = curr.next
+                curr.next = new_prev
+                new_prev = curr
+                curr = next_node
 
-    prev_again = None
-    current_head = temp
-    for _ in range(start, end+1):
-        next_node = current_head.next
-        current_head.next = prev_again
-        prev_again = current_head
-        current_head = next_node
-    if not prev:
-        head = prev_again
-    else:
-        prev.next = prev_again
+            if not star_prev:
+                star_prev = new_prev
+                head = star_prev
+            else:
+                star_prev.next = new_prev
+            temp.next = curr
 
-    temp.next = current_head
+            rev = False
+        else:
+            for _ in range(1, k+1):
+                if not curr:
+                    break
+                new_prev = curr
+                curr = curr.next
+            rev = True
+        star_prev = new_prev
+        temp = curr
+
     return head
 
 
@@ -56,6 +67,6 @@ if __name__ == "__main__":
     head.next.next.next.next.next.next = Node(70)
     print("Original list: ", end="")
     show(head)
-    head = reverse_subset(head, 1, 2)
+    head = rev_alternate(head, k=7)
     print("Modified list: ", end="")
     show(head)
