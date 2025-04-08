@@ -1,77 +1,68 @@
-# Python program to reverse alternate k nodes
+# Python program to reverse a linked list
+# in groups of given size
+
 class Node:
-    def __init__(self, x):
-        self.data = x
+    def __init__(self, data):
+        self.data = data
         self.next = None
 
 
-def kAltReverse(head, k):
-    # Pointer to the tail of the
-    # previous segment
-    prev_tail = None
-    rev = True
+# Function to reverse K groups
+def reverseKGroup(head, k):
+    if head is None:
+        return head
+
     curr = head
+    newHead = None
+    tail = None
 
-    while curr:
+    while curr is not None:
+        groupHead = curr
+        prev = None
+        nextNode = None
+        count = 0
 
-        # Reverse the next k nodes
-        if rev == True:
+        # Reverse the nodes in the current group
+        while curr is not None and count < k:
+            nextNode = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextNode
+            count += 1
 
-            # Mark the head of the current segment
-            seg_head = curr
-            prev = None
+        # If newHead is null, set it to the
+        # last node of the first group
+        if newHead is None:
+            newHead = prev
 
-            # Reverse the current segment of k nodes
-            for _ in range(k):
-                if curr is None:
-                    break
-                nxt = curr.next
-                curr.next = prev
-                prev = curr
-                curr = nxt
+        # Connect the previous group to the
+        # current reversed group
+        if tail is not None:
+            tail.next = prev
 
-            # Update the head of the list
-            # if this is the first segment
-            if prev_tail is None:
-                head = prev
-            else:
-                # Link previous segment with
-                # the current reversed segment
-                prev_tail.next = prev
+        # Move tail to the end of
+        # the reversed group
+        tail = groupHead
 
-            # Update the tail of the current segment
-            prev_tail = seg_head
-            rev = False
-        else:
-
-            # Skip the next k nodes without reversing
-            prev_tail.next = curr
-            for _ in range(k):
-                if curr is None:
-                    break
-                prev_tail = curr
-                curr = curr.next
-            rev = True
-        a = 10
-
-    return head
+    return newHead
 
 
-def print_list(node):
-    curr = node
-    while curr:
+def printList(head):
+    curr = head
+    while curr is not None:
         print(curr.data, end=" ")
         curr = curr.next
     print()
 
 
 if __name__ == "__main__":
-    # Hardcoded linked list: 1->2->3->4->5->6
+    # Creating a sample singly linked list:
+    # 1 -> 2 -> 3 -> 4 -> 5
     head = Node(1)
     head.next = Node(2)
     head.next.next = Node(3)
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
-    head.next.next.next.next.next = Node(6)
-    head = kAltReverse(head, 2)
-    print_list(head)
+    printList(head)
+    head = reverseKGroup(head, 5)
+    printList(head)

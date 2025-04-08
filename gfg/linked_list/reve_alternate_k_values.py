@@ -67,6 +67,6 @@ if __name__ == "__main__":
     head.next.next.next.next.next.next = Node(70)
     print("Original list: ", end="")
     show(head)
-    head = rev_alternate(head, k=7)
+    head = rev_alternate(head, k=2)
     print("Modified list: ", end="")
     show(head)
