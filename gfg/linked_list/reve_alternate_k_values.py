@@ -1,72 +1,62 @@
-"""
-Python3 program to reverse a linked list from position m to position n
-"""
-
+# Python program to reverse alternative k linked list
 
 class Node:
-    def __init__(self, val):
-        self.data = val
+    def __init__(self, data):
+        self.data = data
         self.next = None
 
 
-def show(head):
-    temp = head
-
-    while temp.next is not None:
-        print(temp.data, end=" ")
-        temp = temp.next
-    print(temp.data, end=" ")
-    print()
-
-
-def rev_alternate(head, k):
+def reverse_list(head, alternate_no: int):
     rev = True
-
     temp = head
-    star_prev = None
+    prev = None
+
     while temp and temp.next:
         new_prev = None
         curr = temp
         if rev:
-            for _ in range(1, k+1):
+            for i in range(alternate_no):
                 next_node = curr.next
                 curr.next = new_prev
                 new_prev = curr
                 curr = next_node
+            rev = False
+            if not prev:
+                prev = new_prev
+                head = prev
 
-            if not star_prev:
-                star_prev = new_prev
-                head = star_prev
             else:
-                star_prev.next = new_prev
+                prev.next = new_prev
             temp.next = curr
 
-            rev = False
         else:
-            for _ in range(1, k+1):
-                if not curr:
-                    break
+            for _ in range(alternate_no):
                 new_prev = curr
                 curr = curr.next
+            prev = new_prev
             rev = True
-        star_prev = new_prev
         temp = curr
-
     return head
 
 
+def print_list(head):
+    curr = head
+    while curr is not None:
+        print(curr.data, end=" ")
+        curr = curr.next
+    print()
+
+
 if __name__ == "__main__":
-    # Initialize linked list:
-    # 10 -> 20 -> 30 -> 40 -> 50 -> 60 -> 70
-    head = Node(10)
-    head.next = Node(20)
-    head.next.next = Node(30)
-    head.next.next.next = Node(40)
-    head.next.next.next.next = Node(50)
-    head.next.next.next.next.next = Node(60)
-    head.next.next.next.next.next.next = Node(70)
-    print("Original list: ", end="")
-    show(head)
-    head = rev_alternate(head, k=2)
-    print("Modified list: ", end="")
-    show(head)
+    # Creating a sample singly linked list:
+    # 1 -> 2 -> 3 -> 4 -> 5
+    head = Node(1)
+    head.next = Node(2)
+    head.next.next = Node(3)
+    head.next.next.next = Node(4)
+    head.next.next.next.next = Node(5)
+    head.next.next.next.next.next = Node(6)
+    head.next.next.next.next.next.next = Node(7)
+    print_list(head)
+    head = reverse_list(head, alternate_no=2)
+    print_list(head)
