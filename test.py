@@ -6,28 +6,16 @@ class Node:
         self.next = None
 
 
-def reverse_list(head, k: int):
-    temp = head
-    tail = None
+def delete_middle(head):
+    slow = head
+    fast = head
+    prev = None
 
-    while temp and temp.next:
-        current_tail = temp
-        current_head = None
-        curr = temp
-        for i in range(k):
-            next_node = curr.next
-            curr.next = current_head
-            current_head = curr
-            curr = next_node
-        if not tail:
-            tail = temp
-            head = current_head
-
-        else:
-            tail.next = current_head
-            tail = current_tail
-        temp = curr
-    tail.next = temp
+    while fast and fast.next:
+        prev = slow
+        slow = slow.next
+        fast = fast.next.next
+    prev.next = slow.next
     return head
 
 
@@ -46,8 +34,8 @@ if __name__ == "__main__":
     head.next.next = Node(3)
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
-    head.next.next.next.next.next = Node(6)
+    # head.next.next.next.next.next = Node(6)
     # head.next.next.next.next.next.next = Node(7)
     print_list(head)
-    head = reverse_list(head, k=2)
+    head = delete_middle(head)
     print_list(head)
