@@ -2,7 +2,8 @@
 This is a naive solution (first try)
 """
 
-st = "eeeeeeee"
+
+st = "abba"
 
 
 def longest_palindrome(s: str):
@@ -37,9 +38,31 @@ def longest_palindrome(s: str):
 
 
 """
-Here is a better approach
+Better approach
 """
 
 
-def longest_palindrome_op(s: str):
-    ...
+def longest_palindrome_optimal(s: str):
+    if len(s) <= 1:
+        return s
+
+    def expand(l, r):
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            l -= 1
+            r += 1
+        return s[l+1: r]
+
+    n = s[0]
+    for i in range(len(s) - 1):
+        even_expansion = expand(i, i+1)
+        odd_expansion = expand(i, i)
+        if len(even_expansion) > len(n):
+            n = even_expansion
+
+        if len(odd_expansion) > len(n):
+            n = odd_expansion
+    return n
+
+
+b = "abb"
+print(longest_palindrome_optimal(s=b))
