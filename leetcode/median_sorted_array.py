@@ -47,6 +47,7 @@ num2 = [2]
 This is a better approach 
 """
 
+
 def find_median_sorted_arrays_better(nums1, nums2):
         left = 0
         right = 0

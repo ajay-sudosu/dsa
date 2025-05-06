@@ -1,41 +1,23 @@
-# Python program to reverse a linked list in groups of given size
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-
-
-def delete_middle(head):
-    slow = head
-    fast = head
-    prev = None
-
-    while fast and fast.next:
-        prev = slow
-        slow = slow.next
-        fast = fast.next.next
-    prev.next = slow.next
-    return head
+def expand(i, j):
+    while i > 0 and j < len(s) and s[i] == s[j]:
+        i -= 1
+        j += 1
+    return s[i+1: j]
 
 
-def print_list(head):
-    curr = head
-    while curr is not None:
-        print(curr.data, end=" ")
-        curr = curr.next
-    print()
+def longest_palindrome_optimal(s):
+    if len(s) == 1:
+        return s
+    temp = ""
+    for i in range(len(s)):
+        odd = expand(i, i)
+        even = expand(i, i+1)
 
+        if len(odd) > len(temp):
+            temp = odd
+        if len(even) > len(temp):
+            temp = even
+    return temp
 
-if __name__ == "__main__":
-    # Creating a sample singly linked list:
-    head = Node(1)
-    head.next = Node(2)
-    head.next.next = Node(3)
-    head.next.next.next = Node(4)
-    head.next.next.next.next = Node(5)
-    # head.next.next.next.next.next = Node(6)
-    # head.next.next.next.next.next.next = Node(7)
-    print_list(head)
-    head = delete_middle(head)
-    print_list(head)
+s = "abb"
+print(longest_palindrome_optimal(s=s))
