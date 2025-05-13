@@ -11,5 +11,5 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         d[nums[i]] = i
 
 
-result = twoSum(nums=[-3,4,3,90], target=0)
+result = twoSum(nums=[-3, 4, 3, 90], target=0)
 print(result)

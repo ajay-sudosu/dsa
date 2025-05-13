@@ -11,5 +11,5 @@ def selection_sort(arr):
 
 
 if __name__ == "__main__":
-    l = [20, 15, 10, 5, 40, 1]
+    l = [20, 0, 15, 10, 5, 40, 1]
     selection_sort(l)
