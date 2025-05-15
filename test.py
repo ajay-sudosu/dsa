@@ -1,68 +1,85 @@
-def count(num):
-    count = 0
-    while num > 0:
-        count += 1
-        num = num // 10
-    return count
+arr = [5, 3, 2, 1, 5, 0, 0, 0]
 
 
-def fact(num):
-    if num == 1 or num == 0:
-        return 1
-    return num * fact(num-1)
+def bubble(arr):
+
+    for i in range(len(arr)):
+        for j in range(i+1, len(arr)):
+            if arr[i] > arr[j]:
+                arr[i], arr[j] = arr[j], arr[i]
+    return arr
+
+# print(bubble(arr=arr))
 
 
-def prime(num):
-    import math
-    count = 0
-    rnge = int(math.sqrt(num))
-    start = 2
-    if num == 1:
-        return False
-    while start < rnge:
-        if num % start == 0:
-            return False
-        start += 1
-    return True
+def selection(arr):
+    for i in range(len(arr)):
+        index = i
+        for j in range(i+1, len(arr)):
+            if arr[index] > arr[j]:
+                index = j
 
-
-def gcd(num1, num2):
-    result = 1
-    for i in range(1, num1+1):
-        if num1 % i == 0 and num2 % i == 0:
-            result = i
-    return result
-
-
-def gcd_better(num1, num2):
-    minimum = min(num1, num2)
-    for i in range(minimum, 0, -1):
-        if num1 % i == 0 and num2 % i == 0:
-            return i
-    return 1
-
-
-def reverse_array(arr):
-    if len(arr) == 1:
-        return arr
-    i = 0
-    j = len(arr) - 1
-
-    while i < j:
-        arr[i], arr[j] = arr[j], arr[i]
-        i, j = i + 1, j - 1
+        arr[index], arr[i] = arr[i], arr[index]
     return arr
 
 
-def fibo(n):
-    a = 0
-    b = 1
-
-    for i in range(n):
-        yield a
-        a, b = b, a + b
+# print(selection(arr=arr))
 
 
-result = fibo(5)
-for i in result:
-    print(i)
+def insertion(arr):
+    for i in range(1, len(arr) + 1):
+        j = i - 1
+
+        while j > 0:
+            if arr[j] < arr[j-1]:
+                arr[j], arr[j-1] = arr[j-1], arr[j]
+            j -= 1
+    return arr
+
+# print(insertion(arr=arr))
+
+
+def merge(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    left = merge(arr[:mid])
+    right = merge(arr[mid:])
+
+    return m(left, right)
+
+
+def m(left, right):
+    result = []
+    l, r = 0, 0
+    while l < len(left) and r < len(right):
+        if left[l] < right[r]:
+            result.append(left[l])
+            l += 1
+        else:
+            result.append(right[r])
+            r += 1
+    result.extend(left[l:])
+    result.extend(right[r:])
+    return result
+
+
+# print(merge(arr))
+
+
+def quick(arr):
+    if len(arr) <= 1:
+        return arr
+    left, right = [], []
+    pivot = arr[-1]
+    for i in arr[:-1]:
+        if pivot < i:
+            right.append(i)
+        else:
+            left.append(i)
+
+    return quick(left) + [pivot] + quick(right)
+
+
+# print(quick(arr))
