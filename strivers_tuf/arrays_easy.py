@@ -49,7 +49,7 @@ def remove_duplicate_from_sorted_array(arr):
     return result
 
 
-check = [1, 1, 2, 2, 3, 3, 3, ]
+check = [1, 0, 0, 3, 0, 6, 7, 8, 9, 0, 0, 0]
 # print(remove_duplicate_from_sorted_array(arr=check))
 
 
@@ -62,4 +62,18 @@ def remove_duplicates(arr):
     return arr[:i+1]
 
 
-print(remove_duplicates(arr=check))
+# print(remove_duplicates(arr=check))
+
+
+def shift_zeroes_to_end_order_not_preserved(arr):
+    j = len(arr) - 1
+    i = len(arr) - 1
+    while j > 0:
+        if arr[j] == 0:
+            arr[j], arr[i] = arr[i], arr[j]
+            i -= 1
+        j -= 1
+    return arr
+
+
+print(shift_zeroes_to_end_order_not_preserved(arr=check))
