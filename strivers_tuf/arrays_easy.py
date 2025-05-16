@@ -49,5 +49,17 @@ def remove_duplicate_from_sorted_array(arr):
     return result
 
 
-check = [1, 1, 2, 2]
-print(remove_duplicate_from_sorted_array(arr=check))
+check = [1, 1, 2, 2, 3, 3, 3, ]
+# print(remove_duplicate_from_sorted_array(arr=check))
+
+
+def remove_duplicates(arr):
+    i = 0
+    for j in range(1, len(arr)):
+        if arr[j] != arr[i]:
+            i += 1
+            arr[i] = arr[j]
+    return arr[:i+1]
+
+
+print(remove_duplicates(arr=check))
