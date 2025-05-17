@@ -95,4 +95,17 @@ def shift_zeroes_to_end_order_preserved(arr):
 
 
 check1 = [0, 0, 0, 3, 0, 4, 5, 7]
-print(shift_zeroes_to_end_order_preserved(arr=check1))
+# print(shift_zeroes_to_end_order_preserved(arr=check1))
+
+
+def missing_number(arr, N):
+    total = (N * (N + 1)) // 2
+    diff = int(total - sum(arr))
+
+    if diff != 0:
+        return diff
+    return "All elements are present"
+
+
+check_123 = [1, 2, 3, 4, 5, 6, 7, 8]
+print(missing_number(arr=check_123, N=9))
