@@ -54,6 +54,9 @@ check = [1, 0, 0, 3, 9, 0, 0]
 
 
 def remove_duplicates(arr):
+    """
+    Array needs to be sorted for this algo
+    """
     i = 0
     for j in range(1, len(arr)):
         if arr[j] != arr[i]:
@@ -68,7 +71,7 @@ def remove_duplicates(arr):
 def shift_zeroes_to_end_order_not_preserved(arr):
     j = len(arr) - 1
     i = len(arr) - 1
-    while j > 0:
+    while j >= 0:
         if arr[j] == 0:
             arr[j], arr[i] = arr[i], arr[j]
             i -= 1
@@ -76,13 +79,14 @@ def shift_zeroes_to_end_order_not_preserved(arr):
     return arr
 
 
-# print(shift_zeroes_to_end_order_not_preserved(arr=check))
+check0 = [0, 0, 0, 5, 2, 0]
+# print(shift_zeroes_to_end_order_not_preserved(arr=check0))
 
 
 def shift_zeroes_to_end_order_preserved(arr):
     i = 0
     j = 0
-    while j < len(arr) - 1:
+    while j < len(arr):
         if arr[j] != 0:
             arr[j], arr[i] = arr[i], arr[j]
             i += 1
@@ -90,5 +94,5 @@ def shift_zeroes_to_end_order_preserved(arr):
     return arr
 
 
-check1 = [0, 0, 0, 3, 0, 4, 5, 7, 0]
+check1 = [0, 0, 0, 3, 0, 4, 5, 7]
 print(shift_zeroes_to_end_order_preserved(arr=check1))
