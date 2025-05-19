@@ -129,5 +129,20 @@ def union_or_array(arr1, arr2):
 
 arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 arr2 = [2, 3, 4, 4, 5, 11, 12]
-result = union_or_array(arr1=arr1, arr2=arr2)
-print(remove_duplicate_from_array_optimized(arr=result))
+# result = union_or_array(arr1=arr1, arr2=arr2)
+# print(remove_duplicate_from_array_optimized(arr=result))
+
+
+def longest_subarray_sum(arr, k):
+    length = 0
+    for i in range(len(arr)):
+        total = 0
+        for j in range(i, len(arr)):
+            total += arr[j]
+            if total == k:
+                length = max(length, j - i + 1)
+    return length
+
+
+check_0 = [2, 3, 5]
+print(longest_subarray_sum(arr=check_0, k=52))
