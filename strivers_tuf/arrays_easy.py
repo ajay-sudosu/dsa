@@ -145,4 +145,27 @@ def longest_subarray_sum(arr, k):
 
 
 check_0 = [2, 3, 5]
-print(longest_subarray_sum(arr=check_0, k=52))
+# print(longest_subarray_sum(arr=check_0, k=52))
+
+
+def longest_subarray_sum_two_pointer(arr, k):
+    l = 0
+    r = 0
+    total = arr[0]
+    length = 0
+
+    for _ in range(len(arr)):
+        if total == k:
+            length = max(length, r - l + 1)
+
+        while l <= r and total > k:
+            total -= arr[l]
+            l += 1
+
+        r += 1
+        if r < len(arr):
+            total += arr[r]
+    return length
+
+
+print(longest_subarray_sum_two_pointer(arr=check_0, k=10))
