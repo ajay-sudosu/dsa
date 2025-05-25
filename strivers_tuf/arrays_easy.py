@@ -155,12 +155,12 @@ def longest_subarray_sum_two_pointer(arr, k):
     length = 0
 
     for _ in range(len(arr)):
-        if total == k:
-            length = max(length, r - l + 1)
-
         while l <= r and total > k:
             total -= arr[l]
             l += 1
+
+        if total == k:
+            length = max(length, r - l + 1)
 
         r += 1
         if r < len(arr):
@@ -168,4 +168,35 @@ def longest_subarray_sum_two_pointer(arr, k):
     return length
 
 
-print(longest_subarray_sum_two_pointer(arr=check_0, k=10))
+arr11 = [2, 3, 1, 4, 5, 7, 8, ]
+# print(longest_subarray_sum_two_pointer(arr11, 5))
+
+
+def longest_subarray_for_all_positive_negative_numbers(arr, k):
+    """
+    save sum in sum_exists map
+    calculate sum - k and check if that exists in sum_exists before already
+    update the length if that is greater than the current length
+    """
+    sum_exists = {}
+    length = 0
+    sum = 0
+    for i in range(len(arr)):
+        sum += arr[i]
+
+        if sum not in sum_exists:
+            sum_exists[sum] = i
+
+        if sum == k:
+            length = max(length, i+1)
+
+        remainder = sum - k
+
+        if remainder in sum_exists:
+            length = max(length, i - sum_exists[remainder])
+
+    return length
+
+
+arr21 = [9, 0, 0, 4, -1, 7, 8, ]
+print(longest_subarray_for_all_positive_negative_numbers(arr21, 3))
