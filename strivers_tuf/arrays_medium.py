@@ -90,7 +90,7 @@ def majority_element_moores_voting_algo(arr, n):
         else:
             count -= 1
 
-    # if question does not guarantee majority element is present or it could be None below is the another check
+    # if question does not guarantee majority element is present it could be None below is the another check
     # Checking if the stored element is the majority element
     check = 0
     for i in arr:
@@ -103,4 +103,21 @@ def majority_element_moores_voting_algo(arr, n):
 
 
 check4 = [3, 4, 5, ]
-print(majority_element_moores_voting_algo(check4, n=4))
+# print(majority_element_moores_voting_algo(check4, n=4))
+
+
+def maximum_subarray_sum(arr):
+    """
+    This is a brute force approach
+    """
+    max_sum = arr[0]
+    for i in range(len(arr)):
+        sub_total = 0
+        for j in range(i, len(arr)):
+            sub_total = sub_total + arr[j]
+            max_sum = max(max_sum, sub_total)
+    return max_sum
+
+
+check5 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+print(maximum_subarray_sum(arr=check5))
