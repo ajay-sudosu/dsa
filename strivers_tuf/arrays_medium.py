@@ -175,4 +175,19 @@ def maximum_subarray_sum_with_subarry(arr):
 
 # check8 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 check8 = [-2,]
-print(maximum_subarray_sum_with_subarry(check8))
+# print(maximum_subarray_sum_with_subarry(check8))
+
+
+def buy_and_sell(arr):
+    minimum = float("inf")
+    max_sum = 0
+    for i in arr:
+        minimum = min(i, minimum)
+        max_sum = max(max_sum, i-minimum)
+    return max_sum
+
+
+# check9 = [7, 1, 5, 3, 6, 4]
+check9 = [3, 8, 2, 5, 1, 7]
+# print(buy_and_sell(check9))
+
