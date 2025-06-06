@@ -141,13 +141,38 @@ def maximum_subarray_sum_kandane_algo_2(arr):
 
     for i in arr:
         sub_total += i
-        if sub_total < 0:
-            sub_total = 0
         if sub_total > max_sum:
             max_sum = sub_total
+        if sub_total < 0:
+            sub_total = 0
+
     return max_sum
 
 
-check7 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-print(maximum_subarray_sum_kandane_algo_2(arr=check7))
+check7 = [-2, -1, -2]
+# print(maximum_subarray_sum_kandane_algo_2(arr=check7))
 
+
+def maximum_subarray_sum_with_subarry(arr):
+    max_sum = arr[0]
+    sub_total = 0
+    start = 0
+    end = 0
+    begin = 0
+    for i in range(len(arr)):
+        if sub_total == 0:
+            start = i
+        sub_total += arr[i]
+        if sub_total > max_sum:
+            max_sum = sub_total
+            begin = start
+            end = i
+        if sub_total < 0:
+            sub_total = 0
+
+    return arr[begin: end+1], max_sum
+
+
+# check8 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+check8 = [-2,]
+print(maximum_subarray_sum_with_subarry(check8))
