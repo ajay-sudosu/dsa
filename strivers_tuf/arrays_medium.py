@@ -157,8 +157,8 @@ def maximum_subarray_sum_with_subarry(arr):
     max_sum = arr[0]
     sub_total = 0
     start = 0
-    end = 0
-    begin = 0
+    end = -1
+    begin = -1
     for i in range(len(arr)):
         if sub_total == 0:
             start = i
@@ -174,8 +174,10 @@ def maximum_subarray_sum_with_subarry(arr):
 
 
 # check8 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-check8 = [-2,]
-# print(maximum_subarray_sum_with_subarry(check8))
+arr1 = [5, -4, -2, 1, 2, -1, -2, 6]
+
+# check8 = [-2, ]
+# print(maximum_subarray_sum_with_subarry(arr1))
 
 
 def buy_and_sell(arr):
@@ -191,3 +193,16 @@ def buy_and_sell(arr):
 check9 = [3, 8, 2, 5, 1, 7]
 # print(buy_and_sell(check9))
 
+
+def arrange_array_element_by_sign(arr):
+    pos = [i for i in arr if i > 0]
+    neg = [i for i in arr if i < 0]
+    result = []
+    for i in range(len(pos)):
+        result.append(pos[i])
+        result.append(neg[i])
+    return result
+
+
+check10 = [1, -1, 2, -3]
+print(arrange_array_element_by_sign(check10))
