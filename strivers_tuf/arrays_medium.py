@@ -205,4 +205,23 @@ def arrange_array_element_by_sign(arr):
 
 
 check10 = [1, -1, 2, -3]
-print(arrange_array_element_by_sign(check10))
+# print(arrange_array_element_by_sign(check10))
+
+
+def arrange_array_element_by_sign_optimized(arr):
+    pos_index = 0
+    neg_index = 1
+    result = [0] * len(arr)
+
+    for i in range(len(arr)):
+        if arr[i] > 0:
+            result[pos_index] = arr[i]
+            pos_index += 2
+        else:
+            result[neg_index] = arr[i]
+            neg_index += 2
+    return result
+
+
+check11 = [-7, 8, 1, -1, 2, -3]
+print(arrange_array_element_by_sign_optimized(check11))
