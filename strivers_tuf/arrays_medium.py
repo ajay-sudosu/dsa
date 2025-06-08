@@ -274,5 +274,20 @@ def leader_of_array_brute_force(arr):
     return result
 
 
-check13 = [10, 22, 12, 3, 0, 6]
-print(leader_of_array_brute_force(check13))
+check13 = [10]
+# print(leader_of_array_brute_force(check13))
+
+
+def leader_of_array_brute_force_optimal(arr):
+    max_num = arr[-1]
+    result = [max_num]
+    for i in range(len(arr)-1, -1, -1):
+        if arr[i] > max_num:
+            result.append(arr[i])
+            max_num = arr[i]
+    return result
+
+
+# check14 = [10, 22, 12, 3, 0, 6]
+check14 = [4, 7, 1, 0]
+print(leader_of_array_brute_force_optimal(check14))
