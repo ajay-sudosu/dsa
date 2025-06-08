@@ -224,4 +224,42 @@ def arrange_array_element_by_sign_optimized(arr):
 
 
 check11 = [-7, 8, 1, -1, 2, -3]
-print(arrange_array_element_by_sign_optimized(check11))
+# print(arrange_array_element_by_sign_optimized(check11))
+
+
+def arrange_array_element_by_sign_unequal_optimized(arr):
+    pos = [i for i in arr if i > 0]
+    neg = [i for i in arr if i < 0]
+    count = 0
+    neg_arr_index = 0
+    pos_arr_index = 0
+    if len(pos) > len(neg):
+        for i in range(len(neg)):
+            arr[i * 2] = pos[i]
+            arr[2 * i + 1] = neg[i]
+            pos_arr_index += 1
+            count += 1
+
+        insert_index = count*2
+        for i in pos[pos_arr_index:]:
+            arr[insert_index] = i
+            insert_index += 1
+
+    else:
+        for i in range(len(pos)):
+            arr[i * 2] = pos[i]
+            arr[2 * i + 1] = neg[i]
+            neg_arr_index += 1
+            count += 1
+
+        insert_index = count * 2
+        for i in neg[neg_arr_index:]:
+            arr[insert_index] = i
+            insert_index += 1
+
+    return arr
+
+
+check12 = [-7, 4, -9, -8, 10, 20, 100, 200, -89]
+print(arrange_array_element_by_sign_unequal_optimized(check12))
+
