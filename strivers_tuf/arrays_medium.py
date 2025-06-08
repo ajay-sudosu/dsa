@@ -231,35 +231,48 @@ def arrange_array_element_by_sign_unequal_optimized(arr):
     pos = [i for i in arr if i > 0]
     neg = [i for i in arr if i < 0]
     count = 0
-    neg_arr_index = 0
-    pos_arr_index = 0
+    arr_index = 0
     if len(pos) > len(neg):
         for i in range(len(neg)):
             arr[i * 2] = pos[i]
             arr[2 * i + 1] = neg[i]
-            pos_arr_index += 1
+            arr_index += 1
             count += 1
 
-        insert_index = count*2
-        for i in pos[pos_arr_index:]:
-            arr[insert_index] = i
-            insert_index += 1
+        count = count*2
+        for i in pos[arr_index:]:
+            arr[count] = i
+            count += 1
 
     else:
         for i in range(len(pos)):
             arr[i * 2] = pos[i]
             arr[2 * i + 1] = neg[i]
-            neg_arr_index += 1
+            arr_index += 1
             count += 1
 
-        insert_index = count * 2
-        for i in neg[neg_arr_index:]:
-            arr[insert_index] = i
-            insert_index += 1
-
+        count = count * 2
+        for i in neg[arr_index:]:
+            arr[count] = i
+            count += 1
     return arr
 
 
-check12 = [-7, 4, -9, -8, 10, 20, 100, 200, -89]
-print(arrange_array_element_by_sign_unequal_optimized(check12))
+check12 = [-7, 1, 3, 4, 5]
+# print(arrange_array_element_by_sign_unequal_optimized(check12))
 
+
+def leader_of_array_brute_force(arr):
+    result = []
+    for i in range(len(arr)):
+
+        for j in range(i+1, len(arr)):
+            if arr[i] < arr[j]:
+                break
+        else:
+            result.append(arr[i])
+    return result
+
+
+check13 = [10, 22, 12, 3, 0, 6]
+print(leader_of_array_brute_force(check13))
