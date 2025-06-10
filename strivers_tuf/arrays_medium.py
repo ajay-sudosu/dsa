@@ -1,3 +1,9 @@
+"""
+Pending questions:
+- Next Permutation
+"""
+
+
 def two_sum_op(arr, k):
     save = {}
 
@@ -290,4 +296,28 @@ def leader_of_array_brute_force_optimal(arr):
 
 # check14 = [10, 22, 12, 3, 0, 6]
 check14 = [4, 7, 1, 0]
-print(leader_of_array_brute_force_optimal(check14))
+# print(leader_of_array_brute_force_optimal(check14))
+
+
+def helper_consecutive_seq(arr, num):
+    for i in arr:
+        if i == num:
+            return True
+    return False
+
+
+def consecutive_seq(arr):
+    seq_count = 1
+
+    for i in range(len(arr)):
+        num = arr[i]
+        count = 1
+        while helper_consecutive_seq(arr, num+1):
+            num += 1
+            count += 1
+        seq_count = max(seq_count, count)
+    return seq_count
+
+
+check15 = [4, 7, 1, 3, 2]
+print(consecutive_seq(check15))
