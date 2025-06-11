@@ -34,5 +34,5 @@ def insertion_sort_modified(arr):
 
 if __name__ == "__main__":
     l = [33, -1, 12, 50, 34, 10, 1, 0, 4]
-    # insertion_sort(arr=l)
-    insertion_sort_modified(arr=l)
+    insertion_sort(arr=l)
+    # insertion_sort_modified(arr=l)

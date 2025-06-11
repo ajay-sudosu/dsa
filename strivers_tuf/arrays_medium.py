@@ -1,6 +1,8 @@
 """
 Pending questions:
 - Next Permutation
+- Set matrix zero
+- rotate matrix by 90 degree
 """
 
 
@@ -342,4 +344,24 @@ def consecutive_seq_optimal(arr):
 
 
 check16 = [4, 7, 1, 1, 1, 3, 2, 5]
-print(consecutive_seq_optimal(check16))
+# print(consecutive_seq_optimal(check16))
+
+
+def count_subarray_with_given_sum(arr, k):
+    count = 0
+
+    for i in range(len(arr)):
+        total = 0
+        for j in range(i, len(arr)):
+            total += arr[j]
+            if total > k:
+                break
+            elif total == k:
+                count += 1
+                total = 0
+                break
+    return count
+
+
+check17 = [1, 2, 3, 4]
+print(count_subarray_with_given_sum(check17, k=3))
