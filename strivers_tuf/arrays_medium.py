@@ -284,7 +284,7 @@ check13 = [10]
 # print(leader_of_array_brute_force(check13))
 
 
-def leader_of_array_brute_force_optimal(arr):
+def leader_of_array_optimal(arr):
     max_num = arr[-1]
     result = [max_num]
     for i in range(len(arr)-1, -1, -1):
@@ -296,7 +296,7 @@ def leader_of_array_brute_force_optimal(arr):
 
 # check14 = [10, 22, 12, 3, 0, 6]
 check14 = [4, 7, 1, 0]
-# print(leader_of_array_brute_force_optimal(check14))
+# print(leader_of_array_optimal(check14))
 
 
 def helper_consecutive_seq(arr, num):
@@ -306,7 +306,7 @@ def helper_consecutive_seq(arr, num):
     return False
 
 
-def consecutive_seq(arr):
+def consecutive_seq_brute_force(arr):
     seq_count = 1
 
     for i in range(len(arr)):
@@ -320,4 +320,26 @@ def consecutive_seq(arr):
 
 
 check15 = [4, 7, 1, 3, 2]
-print(consecutive_seq(check15))
+# print(consecutive_seq_brute_force(check15))
+
+
+def consecutive_seq_optimal(arr):
+    max_count = 1
+    last_min = float("-inf")
+    count = 0
+    arr.sort()
+    for i in range(len(arr)):
+        if arr[i] - 1 == last_min:
+            last_min = arr[i]
+            count += 1
+
+        elif arr[i] != last_min:
+            count = 1
+            last_min = arr[i]
+        max_count = max(max_count, count)
+
+    return max_count
+
+
+check16 = [4, 7, 1, 1, 1, 3, 2, 5]
+print(consecutive_seq_optimal(check16))
