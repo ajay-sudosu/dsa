@@ -112,6 +112,7 @@ check_123 = [1, 2, 3, 4, 5, 6, 7, 8]
 
 
 def union_or_array(arr1, arr2):
+    """Both the arrays must be sorted for this problem"""
     i = 0
     j = 0
     result = []
@@ -169,7 +170,7 @@ def longest_subarray_sum_two_pointer(arr, k):
 
 
 arr11 = [2, 3, 1, 4, 5, 7, 8, ]
-# print(longest_subarray_sum_two_pointer(arr11, 5))
+# print(longest_subarray_sum_two_pointer(arr11, 6))
 
 
 def longest_subarray_for_all_positive_negative_numbers(arr, k):
@@ -198,5 +199,5 @@ def longest_subarray_for_all_positive_negative_numbers(arr, k):
     return length
 
 
-arr21 = [9, 0, 0, 4, -1, 7, 8, ]
+arr21 = [2, -1, 2, 4, -1, 7, 8, ]
 print(longest_subarray_for_all_positive_negative_numbers(arr21, 3))

@@ -31,10 +31,10 @@ def majority_element(arr):
         if i == ele2:
             count2 += 1
 
-    if count1 > int(len(arr)/3) + 1:
+    if count1 >= int(len(arr)/3) + 1:
         result.append(ele1)
 
-    if count2 > int(len(arr)/3) + 1:
+    if count2 >= int(len(arr)/3) + 1:
         result.append(ele2)
 
     return result
